@@ -7,6 +7,9 @@ using UnityEngine;
 
 public class Ballot : MonoBehaviour
 {
+    public AudioClip[] paper_sound;
+    public float volume = 0.5f;
+
     public Sprite[] spriteList;
     private int candidate = 0;
     private bool moving = false;
@@ -43,5 +46,6 @@ public class Ballot : MonoBehaviour
     {
         this.destination = dest;
         this.moving = true;
+        GetComponentInChildren<AudioSource>().PlayOneShot(paper_sound[UnityEngine.Random.Range(0,10)], volume);
     }
 }

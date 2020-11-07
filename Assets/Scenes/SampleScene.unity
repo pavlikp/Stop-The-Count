@@ -151,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballot: {fileID: 4092770822363894546, guid: 1f70db7f732c1c344af29ae442a1a35c, type: 3}
   BALLOT_COUNT: 1000
-  TIME_TO_COUNT: 60
+  TIME_TO_COUNT: 10
 --- !u!4 &366133648
 Transform:
   m_ObjectHideFlags: 0

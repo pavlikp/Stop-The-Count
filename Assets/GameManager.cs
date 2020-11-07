@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public int BALLOT_COUNT;
     public int TIME_TO_COUNT;
 
+    float timeRemaining;
+
     GameObject[] ballot_instance;
     int[] ballot_candidates;
 
@@ -26,9 +28,11 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timeRemaining = TIME_TO_COUNT;
+
         // Initial votes
-        votes.Add(1, 6);
-        votes.Add(2, 1);
+        votes.Add(1, 10);   // Donald
+        votes.Add(2, 1);    // Joe
         UpdatePerentages();
 
 
@@ -46,7 +50,7 @@ public class GameManager : MonoBehaviour
             ballot_instance[i] = Instantiate(ballot, new Vector3(0f + Random.Range(-1f,1f), -10f + Random.Range(-1f, 1f), 0f + Random.Range(-1f, 1f)), Quaternion.Euler(0, 0, Random.Range(-5, 5)));
             ballot_instance[i].GetComponent<Ballot>().SetCandidate(ballot_candidates[i]);
         }
-    }
+}
 
     private void UpdatePerentages()
     {
@@ -61,6 +65,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (timeRemaining > 0)
+        {
+            timeRemaining -= Time.deltaTime;
+        }
+        else
+        {
+            StopTheCount();
+        }
+
         if (send_next)
         {
             ballot_instance[current_ballot].GetComponent<Ballot>().MoveTo(new Vector3(0f, 0f, 0f));
@@ -85,5 +98,10 @@ public class GameManager : MonoBehaviour
                 send_next = true;
             }
         }
+    }
+
+    private void StopTheCount()
+    {
+        print("fuck");
     }
 }
