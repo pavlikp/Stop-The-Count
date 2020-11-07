@@ -137,10 +137,20 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fce56ab87838246489c8c3d8d84ce607, type: 3}
   - {fileID: 8300000, guid: edab4ecbbb7df2d45bc303d85bb79bd9, type: 3}
   volume: 0.5
-  spriteList:
-  - {fileID: 21300000, guid: 8f0e8ce1805b9324586217bfa9878605, type: 3}
-  - {fileID: 21300000, guid: 691d883f3c1a2364cbdbe32407f7b45e, type: 3}
-  - {fileID: 21300000, guid: f2268b4e279ffc24195809b699ee7023, type: 3}
+  spriteListJohny:
+  - {fileID: 21300000, guid: a996127ffb3d29b4188f29df8e50983d, type: 3}
+  - {fileID: 21300000, guid: 77bfb472038debf41859f0d84b783360, type: 3}
+  - {fileID: 21300000, guid: 861046da7eee0ae4087950169dbb4aa5, type: 3}
+  - {fileID: 21300000, guid: b8edcca18af29d64ca02c62198b4bc08, type: 3}
+  - {fileID: 21300000, guid: 8d2e041c33838f2488fcad978d669a73, type: 3}
+  - {fileID: 21300000, guid: a97df138915ad32448bd98dc6c7bcd6b, type: 3}
+  spriteListRonald:
+  - {fileID: 21300000, guid: f2cb302aacb32064d819d09c22413961, type: 3}
+  - {fileID: 21300000, guid: bce3413eb42d43547bd96184b3563758, type: 3}
+  - {fileID: 21300000, guid: 9b3924041450ce1448a30c45e740d13c, type: 3}
+  - {fileID: 21300000, guid: 713c2393e8561844291109c887aa209d, type: 3}
+  - {fileID: 21300000, guid: 1b61fc614633a1942b416d185c897d06, type: 3}
+  - {fileID: 21300000, guid: cd7c4df95f758ff4e9fc0b43012d6c32, type: 3}
   speed: 50
 --- !u!1 &5786118552238836939
 GameObject:

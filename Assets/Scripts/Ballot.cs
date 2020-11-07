@@ -2,16 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
+using Random = UnityEngine.Random;
 
 public class Ballot : MonoBehaviour
 {
     public AudioClip[] paper_sound;
     public float volume = 0.5f;
 
-    public Sprite[] spriteList;
+    public Sprite[] spriteListJohny;
+    public Sprite[] spriteListRonald;
     private int candidate = 0;
+    private int difficulty = 0;
     private bool moving = false;
     private Vector3 destination;
     public float speed;
@@ -21,7 +22,27 @@ public class Ballot : MonoBehaviour
     void Start()
     {
         SpriteRenderer renderer = GetComponentInChildren<SpriteRenderer>();
-        renderer.sprite = spriteList[candidate];
+        int ballot_max_range = difficulty == 3 ? 6 : difficulty == 2 ? 3 : 1;
+        if (candidate == 1)
+        {
+            renderer.sprite = spriteListRonald[Random.Range(0, ballot_max_range)];
+        }
+        else
+        {
+            renderer.sprite = spriteListJohny[Random.Range(0, ballot_max_range)];
+        }
+        if (difficulty == 4)
+        {
+            if (Random.Range(0, 4) < 1)
+            {
+                renderer.flipX = enabled;
+            }
+
+            if (Random.Range(0, 4) < 1)
+            {
+                renderer.flipY = enabled;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -42,9 +63,10 @@ public class Ballot : MonoBehaviour
         }
     }
 
-    internal void SetCandidate(int v)
+    internal void SetCandidate(int candidate, int difficulty)
     {
-        candidate = v;
+        this.candidate = candidate;
+        this.difficulty = difficulty;
     }
 
     internal int GetCandidate()

@@ -655,7 +655,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 0f3a5118be64c77448e7abc93c3b51db, type: 3}
-  m_Color: {r: 0, g: 0.7539928, b: 1, a: 1}
+  m_Color: {r: 0.003921569, g: 0.24313727, b: 0.6, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -716,7 +716,8 @@ MonoBehaviour:
   rank_table: {fileID: 102949696}
   shredder: {fileID: 582518112}
   BALLOT_COUNT: 1000
-  TIME_TO_COUNT: 30
+  TIME_TO_COUNT: 60
+  johny_chance: 40
 --- !u!4 &366133648
 Transform:
   m_ObjectHideFlags: 0
@@ -1232,7 +1233,7 @@ GameObject:
   - component: {fileID: 1320171650}
   - component: {fileID: 1320171649}
   m_Layer: 0
-  m_Name: Parkety
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1357,7 +1358,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 0f3a5118be64c77448e7abc93c3b51db, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.05541134, a: 1}
+  m_Color: {r: 0.8117648, g: 0.18039216, b: 0.007843138, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

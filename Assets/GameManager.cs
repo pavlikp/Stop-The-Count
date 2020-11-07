@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public Shredder shredder;
     public int BALLOT_COUNT;
     public int TIME_TO_COUNT;
+    public int johny_chance;
 
     float timeRemaining;
 
@@ -88,8 +89,8 @@ public class GameManager : MonoBehaviour
         timeRemaining = TIME_TO_COUNT;
 
         // Initial votes
-        votes.Add(1, 15);   // Donald
-        votes.Add(2, 3);    // Joe
+        votes.Add(1, 15);   // Ronald
+        votes.Add(2, 3);    // Johny
         UpdatePerentages();
 }
 
@@ -115,7 +116,23 @@ public class GameManager : MonoBehaviour
             if (send_next)
             {
                 Ballot created_ballot = Instantiate(ballot, new Vector3(0f + Random.Range(-1f, 1f), -10f + Random.Range(-1f, 1f), 0f + Random.Range(-1f, 1f)), Quaternion.Euler(0, 0, Random.Range(-5, 5)));
-                created_ballot.GetComponent<Ballot>().SetCandidate(Random.Range(1, 3));
+                int candidate = Random.Range(0, 100) < johny_chance ? 2 : 1;
+                if (timeRemaining > TIME_TO_COUNT * 3 / 4)
+                {
+                    created_ballot.GetComponent<Ballot>().SetCandidate(candidate, 1);
+                }
+                else if (timeRemaining > TIME_TO_COUNT / 2)
+                {
+                    created_ballot.GetComponent<Ballot>().SetCandidate(candidate, 2);
+                }
+                else if (timeRemaining > TIME_TO_COUNT / 4)
+                {
+                    created_ballot.GetComponent<Ballot>().SetCandidate(candidate, 3);
+                }
+                else
+                {
+                    created_ballot.GetComponent<Ballot>().SetCandidate(candidate, 4);
+                }
                 created_ballot.GetComponent<Ballot>().MoveTo(new Vector3(0f, 0f, 0f));
                 current_ballot = created_ballot;
                 send_next = false;
