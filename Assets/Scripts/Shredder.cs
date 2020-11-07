@@ -8,6 +8,9 @@ public class Shredder : MonoBehaviour
     public float shake_amount;
     public float shake_duration;
 
+    public AudioClip[] shred_sound;
+    public float volume = 0.5f;
+
     private float shake_remaining;
 
     // Update is called once per frame
@@ -27,5 +30,6 @@ public class Shredder : MonoBehaviour
     internal void Shake()
     {
         shake_remaining = shake_duration;
+        GetComponentInChildren<AudioSource>().PlayOneShot(shred_sound[UnityEngine.Random.Range(0, 10)], volume);
     }
 }

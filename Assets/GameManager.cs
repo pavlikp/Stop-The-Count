@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
     public int BALLOT_COUNT;
     public int TIME_TO_COUNT;
     public int johny_chance;
+    public Eagle eagle;
+    public Dump ronald;
+    public Bythem johny;
+    public GameObject title_screen;
 
     float timeRemaining;
 
@@ -26,7 +30,7 @@ public class GameManager : MonoBehaviour
     Dictionary<int, float> percentages = new Dictionary<int, float>();
 
     bool send_next = true;
-    private bool playing = true;
+    private bool playing = false;
 
     Dictionary<String, float> states_table = new Dictionary<String, float>()
         {
@@ -89,8 +93,8 @@ public class GameManager : MonoBehaviour
         timeRemaining = TIME_TO_COUNT;
 
         // Initial votes
-        votes.Add(1, 15);   // Ronald
-        votes.Add(2, 3);    // Johny
+        votes.Add(1, 20);   // Ronald
+        votes.Add(2, 4);    // Johny
         UpdatePerentages();
 }
 
@@ -108,7 +112,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timeRemaining > 0)
+        if (timeRemaining > 0 && playing)
         {
             timeRemaining -= Time.deltaTime;
             timer_sprite.transform.Rotate(Vector3.back * (360 * Time.deltaTime / TIME_TO_COUNT));
@@ -145,11 +149,21 @@ public class GameManager : MonoBehaviour
                     votes[current_ballot.GetComponent<Ballot>().GetCandidate()]++;
                     UpdatePerentages();
 
+                    if(current_ballot.GetComponent<Ballot>().GetCandidate() == 1)
+                    {
+                        eagle.PlaySound();
+                    }
+
                     current_ballot.GetComponent<Ballot>().MoveToAndDestroy(new Vector3(-15f, 0f, 0f));
                     send_next = true;
                 }
                 if (Input.GetKeyDown(KeyCode.RightArrow))
                 {
+                    if (current_ballot.GetComponent<Ballot>().GetCandidate() == 2)
+                    {
+                        eagle.PlaySound();
+                    }
+
                     current_ballot.GetComponent<Ballot>().MoveToAndDestroy(new Vector3(15f, 0f, 0f));
                     shredder.Shake();
                     send_next = true;
@@ -160,6 +174,28 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(StopTheCount());
             playing = false;
+        }
+        else if (!playing && Input.GetKeyDown(KeyCode.Space))
+        {
+            Destroy(title_screen);
+
+            rank_table.GetComponent<RankTable>().ResetPositonAndStopSounds();
+
+            johny.GetComponent<Bythem>().ResetPosition();
+            ronald.GetComponent<Dump>().ResetPosition();
+
+            timeRemaining = TIME_TO_COUNT;
+
+            votes = new Dictionary<int, int>();
+            percentages = new Dictionary<int, float>();
+
+            // Initial votes
+            votes.Add(1, 20);   // Ronald
+            votes.Add(2, 4);    // Johny
+            UpdatePerentages();
+            
+            playing = true;
+            send_next = true;
         }
     }
 
@@ -210,9 +246,11 @@ public class GameManager : MonoBehaviour
         if (final_vote_percent <= 50f)
         {
             rank_table.GetComponent<RankTable>().PlayLoseSound();
+            ronald.MoveTo(new Vector3(-1f, 0f, 0f));
         } else
         {
             rank_table.GetComponent<RankTable>().PlayWinSound();
+            johny.MoveTo(new Vector3(1f, 0f, 0f));
         }
     }
 }

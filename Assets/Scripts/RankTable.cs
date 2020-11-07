@@ -70,4 +70,11 @@ public class RankTable : MonoBehaviour
         this.destination = new Vector3(0f,0f,0f);
         this.moving = true;
     }
+
+    internal void ResetPositonAndStopSounds()
+    {
+        transform.position = new Vector3(0f, 8f, 0f);
+
+        GetComponentInChildren<AudioSource>().Stop();
+    }
 }
