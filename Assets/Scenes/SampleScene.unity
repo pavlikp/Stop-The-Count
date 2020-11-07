@@ -708,7 +708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b44dae584c02fa4daa3f4aab60229e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballot: {fileID: 4092770822363894546, guid: 1f70db7f732c1c344af29ae442a1a35c, type: 3}
+  ballot: {fileID: 8530472473725174681, guid: 1f70db7f732c1c344af29ae442a1a35c, type: 3}
   tweet: {fileID: 145001491}
   BlueBar: {fileID: 292106745}
   RedBar: {fileID: 1354331071}

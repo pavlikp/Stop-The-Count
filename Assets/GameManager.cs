@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject ballot;
+    public Ballot ballot;
     public GameObject tweet;
     public GameObject BlueBar;
     public GameObject RedBar;
@@ -19,10 +19,7 @@ public class GameManager : MonoBehaviour
 
     float timeRemaining;
 
-    GameObject[] ballot_instance;
-    int[] ballot_candidates;
-
-    int current_ballot = 0;
+    Ballot current_ballot;
 
     Dictionary<int, int> votes = new Dictionary<int, int>();
     Dictionary<int, float> percentages = new Dictionary<int, float>();
@@ -94,22 +91,6 @@ public class GameManager : MonoBehaviour
         votes.Add(1, 15);   // Donald
         votes.Add(2, 3);    // Joe
         UpdatePerentages();
-
-
-        // Initialize ballot candidate votes
-        ballot_candidates = new int[BALLOT_COUNT];
-        for (int i = 0; i < BALLOT_COUNT; i++)
-        {
-            ballot_candidates[i] = Random.Range(1, 3);
-        }
-
-        // Initialize ballot game objects
-        ballot_instance = new GameObject[BALLOT_COUNT];
-        for (int i = 0; i < BALLOT_COUNT; i++)
-        {
-            ballot_instance[i] = Instantiate(ballot, new Vector3(0f + Random.Range(-1f,1f), -10f + Random.Range(-1f, 1f), 0f + Random.Range(-1f, 1f)), Quaternion.Euler(0, 0, Random.Range(-5, 5)));
-            ballot_instance[i].GetComponent<Ballot>().SetCandidate(ballot_candidates[i]);
-        }
 }
 
     private void UpdatePerentages()
@@ -119,7 +100,6 @@ public class GameManager : MonoBehaviour
         {
             percentages[entry.Key] = entry.Value / sum * 100;
         }
-        print("bidet votes: " + percentages[2]);
 
         BlueBar.transform.localScale = new Vector3(RedBar.transform.localScale[0] * percentages[2] / 100, RedBar.transform.localScale[1], RedBar.transform.localScale[2]);
     }
@@ -134,7 +114,10 @@ public class GameManager : MonoBehaviour
 
             if (send_next)
             {
-                ballot_instance[current_ballot].GetComponent<Ballot>().MoveTo(new Vector3(0f, 0f, 0f));
+                Ballot created_ballot = Instantiate(ballot, new Vector3(0f + Random.Range(-1f, 1f), -10f + Random.Range(-1f, 1f), 0f + Random.Range(-1f, 1f)), Quaternion.Euler(0, 0, Random.Range(-5, 5)));
+                created_ballot.GetComponent<Ballot>().SetCandidate(Random.Range(1, 3));
+                created_ballot.GetComponent<Ballot>().MoveTo(new Vector3(0f, 0f, 0f));
+                current_ballot = created_ballot;
                 send_next = false;
             }
 
@@ -142,18 +125,16 @@ public class GameManager : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.LeftArrow))
                 {
-                    votes[ballot_candidates[current_ballot]]++;
+                    votes[current_ballot.GetComponent<Ballot>().GetCandidate()]++;
                     UpdatePerentages();
 
-                    ballot_instance[current_ballot].GetComponent<Ballot>().MoveToAndDestroy(new Vector3(-15f, 0f, 0f));
-                    current_ballot++;
+                    current_ballot.GetComponent<Ballot>().MoveToAndDestroy(new Vector3(-15f, 0f, 0f));
                     send_next = true;
                 }
                 if (Input.GetKeyDown(KeyCode.RightArrow))
                 {
-                    ballot_instance[current_ballot].GetComponent<Ballot>().MoveToAndDestroy(new Vector3(15f, 0f, 0f));
+                    current_ballot.GetComponent<Ballot>().MoveToAndDestroy(new Vector3(15f, 0f, 0f));
                     shredder.Shake();
-                    current_ballot++;
                     send_next = true;
                 }
             }
@@ -170,10 +151,7 @@ public class GameManager : MonoBehaviour
         tweet.GetComponentInChildren<SpriteRenderer>().enabled = true;
         tweet.GetComponentInChildren<Tweet>().PlaySound();
 
-        foreach (GameObject ballot in ballot_instance)
-        {
-            Destroy(ballot);
-        }
+        Destroy(current_ballot.gameObject);
 
         yield return new WaitForSeconds(3);
 
@@ -209,11 +187,6 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-
-        print(top_entry);
-        print(middle_entry);
-        print(bottom_entry);
-
 
         tweet.GetComponentInChildren<SpriteRenderer>().enabled = false;
         rank_table.GetComponent<RankTable>().MoveToCenter(top_entry, middle_entry, bottom_entry);

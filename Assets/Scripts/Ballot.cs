@@ -47,6 +47,11 @@ public class Ballot : MonoBehaviour
         candidate = v;
     }
 
+    internal int GetCandidate()
+    {
+        return candidate;
+    }
+
     internal void MoveTo(Vector3 dest)
     {
         this.destination = dest;
