@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 157239965431857077}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 6430068408028389418}
   m_RootOrder: 0
@@ -139,8 +139,8 @@ MonoBehaviour:
   volume: 0.5
   spriteList:
   - {fileID: 21300000, guid: 8f0e8ce1805b9324586217bfa9878605, type: 3}
-  - {fileID: 21300000, guid: fb35dd1156531ac4b928c1d2a61ba049, type: 3}
-  - {fileID: 21300000, guid: 105fd917ce3d3e043a0579fb6e3d641a, type: 3}
+  - {fileID: 21300000, guid: 691d883f3c1a2364cbdbe32407f7b45e, type: 3}
+  - {fileID: 21300000, guid: f2268b4e279ffc24195809b699ee7023, type: 3}
   speed: 50
 --- !u!1 &5786118552238836939
 GameObject:
