@@ -8,6 +8,8 @@ using Random = UnityEngine.Random;
 public class GameManager : MonoBehaviour
 {
     public GameObject ballot;
+    public GameObject tweet;
+    public GameObject timer_sprite;
     public int BALLOT_COUNT;
     public int TIME_TO_COUNT;
 
@@ -68,40 +70,41 @@ public class GameManager : MonoBehaviour
         if (timeRemaining > 0)
         {
             timeRemaining -= Time.deltaTime;
+            timer_sprite.transform.Rotate(Vector3.back * (360 * Time.deltaTime / TIME_TO_COUNT));
+
+            if (send_next)
+            {
+                ballot_instance[current_ballot].GetComponent<Ballot>().MoveTo(new Vector3(0f, 0f, 0f));
+                send_next = false;
+            }
+
+            if (!send_next)
+            {
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    votes[ballot_candidates[current_ballot]]++;
+                    UpdatePerentages();
+
+                    ballot_instance[current_ballot].GetComponent<Ballot>().MoveTo(new Vector3(-15f, 0f, 0f));
+                    current_ballot++;
+                    send_next = true;
+                }
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    ballot_instance[current_ballot].GetComponent<Ballot>().MoveTo(new Vector3(15f, 0f, 0f));
+                    current_ballot++;
+                    send_next = true;
+                }
+            }
         }
         else
         {
             StopTheCount();
         }
-
-        if (send_next)
-        {
-            ballot_instance[current_ballot].GetComponent<Ballot>().MoveTo(new Vector3(0f, 0f, 0f));
-            send_next = false;
-        }
-
-        if (!send_next)
-        {
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                votes[ballot_candidates[current_ballot]]++;
-                UpdatePerentages();
-
-                ballot_instance[current_ballot].GetComponent<Ballot>().MoveTo(new Vector3(-15f, 0f, 0f));
-                current_ballot++;
-                send_next = true;
-            }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                ballot_instance[current_ballot].GetComponent<Ballot>().MoveTo(new Vector3(15f, 0f, 0f));
-                current_ballot++;
-                send_next = true;
-            }
-        }
     }
 
     private void StopTheCount()
     {
-        print("fuck");
+        tweet.GetComponentInChildren<SpriteRenderer>().enabled = true;
     }
 }
