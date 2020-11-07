@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public GameObject ballot;
     public GameObject tweet;
+    public GameObject BlueBar;
+    public GameObject RedBar;
     public GameObject timer_sprite;
     public int BALLOT_COUNT;
     public int TIME_TO_COUNT;
@@ -62,6 +64,8 @@ public class GameManager : MonoBehaviour
             percentages[entry.Key] = entry.Value / sum * 100;
         }
         print("bidet votes: " + percentages[2]);
+
+        BlueBar.transform.localScale = new Vector3(RedBar.transform.localScale[0] * percentages[2] / 100, RedBar.transform.localScale[1], RedBar.transform.localScale[2]);
     }
 
     // Update is called once per frame
