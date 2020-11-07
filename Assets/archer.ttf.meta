@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9f33ba87e0222f3498899b93f6e1695f
+guid: b82c20061320e414885e486d52d097b0
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Fifth Grader
+  fontName: Archer
   fontNames:
-  - Fifth Grader
+  - Archer
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

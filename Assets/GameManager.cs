@@ -168,6 +168,11 @@ public class GameManager : MonoBehaviour
         tweet.GetComponentInChildren<SpriteRenderer>().enabled = true;
         tweet.GetComponentInChildren<Tweet>().PlaySound();
 
+        foreach (GameObject ballot in ballot_instance)
+        {
+            Destroy(ballot);
+        }
+
         yield return new WaitForSeconds(3);
 
         float final_vote_percent = percentages[2];
@@ -209,7 +214,13 @@ public class GameManager : MonoBehaviour
 
 
         tweet.GetComponentInChildren<SpriteRenderer>().enabled = false;
-        rank_table.GetComponent<SpriteRenderer>().enabled = true;
-        rank_table.GetComponent<RankTable>().PlayWinSound();
+        rank_table.GetComponent<RankTable>().MoveToCenter(top_entry, middle_entry, bottom_entry);
+        if (final_vote_percent <= 50f)
+        {
+            rank_table.GetComponent<RankTable>().PlayLoseSound();
+        } else
+        {
+            rank_table.GetComponent<RankTable>().PlayWinSound();
+        }
     }
 }
