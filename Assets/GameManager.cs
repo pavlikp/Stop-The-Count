@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject RedBar;
     public GameObject timer_sprite;
     public GameObject rank_table;
+    public Shredder shredder;
     public int BALLOT_COUNT;
     public int TIME_TO_COUNT;
 
@@ -90,8 +91,8 @@ public class GameManager : MonoBehaviour
         timeRemaining = TIME_TO_COUNT;
 
         // Initial votes
-        votes.Add(1, 10);   // Donald
-        votes.Add(2, 1);    // Joe
+        votes.Add(1, 15);   // Donald
+        votes.Add(2, 3);    // Joe
         UpdatePerentages();
 
 
@@ -151,6 +152,7 @@ public class GameManager : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.RightArrow))
                 {
                     ballot_instance[current_ballot].GetComponent<Ballot>().MoveTo(new Vector3(15f, 0f, 0f));
+                    shredder.Shake();
                     current_ballot++;
                     send_next = true;
                 }
