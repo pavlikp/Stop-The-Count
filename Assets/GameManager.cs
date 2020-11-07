@@ -145,13 +145,13 @@ public class GameManager : MonoBehaviour
                     votes[ballot_candidates[current_ballot]]++;
                     UpdatePerentages();
 
-                    ballot_instance[current_ballot].GetComponent<Ballot>().MoveTo(new Vector3(-15f, 0f, 0f));
+                    ballot_instance[current_ballot].GetComponent<Ballot>().MoveToAndDestroy(new Vector3(-15f, 0f, 0f));
                     current_ballot++;
                     send_next = true;
                 }
                 if (Input.GetKeyDown(KeyCode.RightArrow))
                 {
-                    ballot_instance[current_ballot].GetComponent<Ballot>().MoveTo(new Vector3(15f, 0f, 0f));
+                    ballot_instance[current_ballot].GetComponent<Ballot>().MoveToAndDestroy(new Vector3(15f, 0f, 0f));
                     shredder.Shake();
                     current_ballot++;
                     send_next = true;

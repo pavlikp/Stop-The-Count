@@ -15,6 +15,7 @@ public class Ballot : MonoBehaviour
     private bool moving = false;
     private Vector3 destination;
     public float speed;
+    private bool die_at_destination = false;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,10 @@ public class Ballot : MonoBehaviour
             if (Vector3.Distance(transform.position, destination) < 0.01f)
             {
                 moving = false;
+                if (die_at_destination)
+                {
+                    Destroy(this.gameObject);
+                }
             }
         }
     }
@@ -47,5 +52,11 @@ public class Ballot : MonoBehaviour
         this.destination = dest;
         this.moving = true;
         GetComponentInChildren<AudioSource>().PlayOneShot(paper_sound[UnityEngine.Random.Range(0,10)], volume);
+    }
+
+    internal void MoveToAndDestroy(Vector3 dest)
+    {
+        MoveTo(dest);
+        die_at_destination = true;
     }
 }
