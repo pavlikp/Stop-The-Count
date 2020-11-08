@@ -248,8 +248,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7e-15, y: -16.37}
-  m_SizeDelta: {x: 51.96, y: 63.1}
+  m_AnchoredPosition: {x: 0, y: -10.67}
+  m_SizeDelta: {x: 78.32, y: 52}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &101063259
 MonoBehaviour:
@@ -282,10 +282,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "HELLO YOUNG VOTE-COUNTER,\r\n\nSUPREME LEADER <color=red>RONALD DUMP</color>
-    IS TAKING OVER. WE MUST HELP OUR SAVIOR <color=blue>JOHNY BUYTHEM</color> TO WIN.
-    COUNT ALL OF HIS VOTES, AND SHRED ALL THE DUMP'S BALLOTS. WE ARE <color=yellow>COUNTING</color>
-    ON YOU!\n\n\nPRESS SPACE\nTO PLAY!\n"
+  m_Text: "HELLO YOUNG\nVOTE-COUNTER,\r\n\nSUPREME LEADER <color=red>RONALD\nDUMP</color>
+    WILL BECOME PRESIDENT AGAIN. WE MUST HELP OUR CANDIDATE <color=blue>JOHNY BUYTHEM</color>,
+    DEATH INCARNATE, TO WIN. COUNT ALL OF HIS VOTES AND SHRED ALL THE DUMP'S\nBALLOTS.
+    WE ARE\n<color=yellow>COUNTING</color> ON YOU!\n\n"
 --- !u!222 &101063260
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1383,6 +1383,85 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b79e361da0bacf649a3758b606882239, type: 3}
   - {fileID: 8300000, guid: 819e4f8407b35594dbf8c7f04e62c6ea, type: 3}
   volume: 0.5
+--- !u!1 &823188502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 823188503}
+  - component: {fileID: 823188505}
+  - component: {fileID: 823188504}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &823188503
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823188502}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1900489403}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1.7, y: -39.2}
+  m_SizeDelta: {x: 41.07, y: 8.12}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &823188504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823188502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: b82c20061320e414885e486d52d097b0, type: 3}
+    m_FontSize: 4
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 4
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'PRESS SPACE
+
+    TO START!'
+--- !u!222 &823188505
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823188502}
+  m_CullTransparentMesh: 0
 --- !u!1 &964386200
 GameObject:
   m_ObjectHideFlags: 0
@@ -2488,6 +2567,7 @@ RectTransform:
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 101063258}
+  - {fileID: 823188503}
   m_Father: {fileID: 2071390044}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

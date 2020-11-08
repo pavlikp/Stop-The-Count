@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour
             { "Massachusetts", 65.3f},
             { "District of Columbia", 92.6f}
         };
+    private bool can_restart = true;
 
     // Start is called before the first frame update
     void Start()
@@ -175,7 +176,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(StopTheCount());
             playing = false;
         }
-        else if (!playing && Input.GetKeyDown(KeyCode.Space))
+        else if (!playing && Input.GetKeyDown(KeyCode.Space)  && can_restart)
         {
             Destroy(title_screen);
 
@@ -196,6 +197,7 @@ public class GameManager : MonoBehaviour
             
             playing = true;
             send_next = true;
+            can_restart = false;
         }
     }
 
@@ -252,5 +254,9 @@ public class GameManager : MonoBehaviour
             rank_table.GetComponent<RankTable>().PlayWinSound();
             johny.MoveTo(new Vector3(1f, 0f, 0f));
         }
+
+        yield return new WaitForSeconds(5);
+
+        can_restart = true;
     }
 }
