@@ -127,6 +127,7 @@ public class GameManager : MonoBehaviour
                 int candidate = Random.Range(0, 100) < johny_chance ? 2 : 1;
                 if (timeRemaining > TIME_TO_COUNT * 3 / 4)
                 {
+                    candidate = Random.Range(0, 100) < ((johny_chance / 3) * 2) ? 2 : 1;
                     created_ballot.GetComponent<Ballot>().SetCandidate(candidate, 1);
                 }
                 else if (timeRemaining > TIME_TO_COUNT / 2)
@@ -148,7 +149,7 @@ public class GameManager : MonoBehaviour
 
             if (!send_next)
             {
-                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
                 {
                     votes[current_ballot.GetComponent<Ballot>().GetCandidate()]++;
                     UpdatePerentages();
@@ -161,7 +162,7 @@ public class GameManager : MonoBehaviour
                     current_ballot.GetComponent<Ballot>().MoveToAndDestroy(new Vector3(-15f, 0f, 0f));
                     send_next = true;
                 }
-                if (Input.GetKeyDown(KeyCode.RightArrow))
+                if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
                 {
                     if (current_ballot.GetComponent<Ballot>().GetCandidate() == 2)
                     {

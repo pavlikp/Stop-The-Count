@@ -31,15 +31,27 @@ public class Ballot : MonoBehaviour
         {
             renderer.sprite = spriteListJohny[Random.Range(0, ballot_max_range)];
         }
+        if (difficulty == 3)
+        {
+            if (Random.Range(0, 4) < 1)
+            {
+                renderer.flipX = enabled;
+                renderer.flipY = enabled;
+            }
+        }
         if (difficulty == 4)
         {
             if (Random.Range(0, 4) < 1)
             {
                 renderer.flipX = enabled;
             }
-
-            if (Random.Range(0, 4) < 1)
+            else if (Random.Range(0, 4) < 1)
             {
+                renderer.flipY = enabled;
+            }
+            else if (Random.Range(0, 4) < 1)
+            {
+                renderer.flipX = enabled;
                 renderer.flipY = enabled;
             }
         }
