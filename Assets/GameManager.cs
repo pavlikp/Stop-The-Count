@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -21,6 +22,8 @@ public class GameManager : MonoBehaviour
     public Dump ronald;
     public Bythem johny;
     public GameObject title_screen;
+    public Text restart_text;
+    public Clock clock;
 
     float timeRemaining;
 
@@ -138,7 +141,7 @@ public class GameManager : MonoBehaviour
                 {
                     created_ballot.GetComponent<Ballot>().SetCandidate(candidate, 4);
                 }
-                created_ballot.GetComponent<Ballot>().MoveTo(new Vector3(0f, 0f, 0f));
+                created_ballot.GetComponent<Ballot>().MoveTo(new Vector3(0f, -1f, 0f));
                 current_ballot = created_ballot;
                 send_next = false;
             }
@@ -170,6 +173,11 @@ public class GameManager : MonoBehaviour
                     send_next = true;
                 }
             }
+
+            if (timeRemaining < TIME_TO_COUNT / 4 && !clock.shaking)
+            {
+                clock.StartShaking(timeRemaining);
+            }
         }
         else if (playing)
         {
@@ -198,6 +206,9 @@ public class GameManager : MonoBehaviour
             playing = true;
             send_next = true;
             can_restart = false;
+            restart_text.enabled = false;
+
+            clock.StartCountdown();
         }
     }
 
@@ -258,5 +269,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5);
 
         can_restart = true;
+        restart_text.enabled = true;
     }
 }
